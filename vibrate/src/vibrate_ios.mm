@@ -13,4 +13,9 @@ int VibratePlatform_Trigger()
 	return 1;
 }
 
+in VibratePlatform_Cancel()
+{
+	return 1;
+}
+
 #endif
