@@ -14,8 +14,22 @@ class VibrateExtension {
 			@Override
 			public void run() {
 				Vibrator vibrator = (Vibrator)activity.getSystemService(Context.VIBRATOR_SERVICE);
-				vibrator.vibrate(1000);
+				if (vibrator.hasVibrator()) {
+					vibrator.vibrate(100);
+				}
 			}
 		});
 	}
+	public static void Cancel(final Activity activity) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				Vibrator vibrator = (Vibrator)activity.getSystemService(Context.VIBRATOR_SERVICE);
+				if (vibrator.hasVibrator()) {
+					vibrator.cancel();
+				}
+			}
+		});		
+	}
+
 }

@@ -61,4 +61,17 @@ int VibratePlatform_Trigger()
 	return 1;
 }
 
+int VibratePlatform_Cancel()
+{
+	// prepare JNI
+	AttachScope attachscope;
+	JNIEnv* env = attachscope.m_Env;
+	jclass cls = GetClass(env, "com.defold.android.vibrate.VibrateExtension");
+
+	// call method
+	jmethodID vibrate = env->GetStaticMethodID(cls, "Cancel", "(Landroid/app/Activity;)V");
+	env->CallStaticVoidMethod(cls, vibrate, dmGraphics::GetNativeAndroidActivity());
+	return 1;
+}
+
 #endif

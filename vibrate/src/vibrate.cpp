@@ -32,9 +32,23 @@ static int Trigger(lua_State* L)
     return 0;
 }
 
+static int Cancel(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+
+    int status = VibratePlatform_Cancel();
+    if( !status )
+    {
+        luaL_error(L, "Failed to cancel vibrate");
+    }
+
+    return 0;
+}
+
 static const luaL_reg Module_methods[] =
 {
     {"trigger", Trigger},
+    {"cancel", Cancel},
     {0, 0}
 };
 
